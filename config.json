@@ -1,3 +1,6 @@
 {
-  "minimum_members": 10
+  "minimum_members": 10,
+  "nukeable": false,
+  "include_bots": false,
+  "minimum_guilds": 1
 }

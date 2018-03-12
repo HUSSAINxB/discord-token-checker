@@ -100,5 +100,8 @@ func main() {
 }
 
 type Configuration struct {
-	MinimumMembers int`json:"minimum_members"`
+	MinimumMembers int  `json:"minimum_members"`
+	IncludeBots    bool `json:"include_bots"`
+	MinimumGuilds  int  `json:"minimum_guilds"`
+	Nukeable       bool `json:"nukeable"`
 }
