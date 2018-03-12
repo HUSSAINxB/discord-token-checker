@@ -23,7 +23,7 @@ Prerequisites:
   
 Steps:
   1. ```git clone https://github.com/discoli/discord-token-checker/```
-  2. ```cd discord-token-checker-master```
+  2. ```cd discord-token-checker```
   3. ```go install github.com/discoli/discord-token-checker/``` for dependencies
   4. ```go run *.go```
   
