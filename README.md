@@ -23,9 +23,8 @@ Prerequisites:
   
 Steps:
   1. ```git clone https://github.com/discoli/discord-token-checker/```
-  2.
-    a. ```cd discord-token-checker-master```
-    b. ```go install github.com/discoli/discord-token-checker/``` for dependencies
-  3. ```go run *```
+  2. ```cd discord-token-checker-master```
+  3. ```go install github.com/discoli/discord-token-checker/``` for dependencies
+  4. ```go run *```
   
 Once launched, make sure a list of tokens is stored in ```tokens.txt```, at the end of checking they'll be printed to ```valid.txt```
