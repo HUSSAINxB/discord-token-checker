@@ -78,7 +78,7 @@ func main() {
 			valid, str := validate(t)
 			if valid {
 				fmt.Println("("+strconv.Itoa(i)+"/"+strconv.Itoa(len(Tokens))+")", t, "is valid.")
-				str += fmt.Sprint("\n("+strconv.Itoa(i)+"/"+strconv.Itoa(len(Tokens))+")", t, "is valid.")
+				str += fmt.Sprint("\n("+strconv.Itoa(i)+"/"+strconv.Itoa(len(Tokens))+")", t, " is valid.")
 				Valid = append(Valid, str)
 			}
 		}
